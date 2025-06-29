@@ -5,10 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { supabaseServer } from "@/lib/supabaseServerClient";
 
 // GET: Get single order (with order items)
-export async function GET(
-  req: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function GET(req: NextRequest, { params }: any) {
   const orderId = params.id;
 
   if (!orderId) {
@@ -39,10 +36,7 @@ export async function GET(
 }
 
 // PATCH: Update order (status/payment)
-export async function PATCH(
-  req: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function PATCH(req: NextRequest, { params }: any) {
   const orderId = params.id;
   if (!orderId) {
     return NextResponse.json({ error: "Missing order id." }, { status: 400 });
