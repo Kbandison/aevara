@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-// app/api/order-items/[id]/route.ts
-
 import { NextRequest, NextResponse } from "next/server";
 import { supabaseServer } from "@/lib/supabaseServerClient";
 
@@ -37,30 +34,30 @@ export async function PATCH(
 }
 
 // DELETE: Delete order item by id (admin only)
-// export async function DELETE(
-//   req: NextRequest,
-//   context: { params: { id: string } }
-// ) {
-//   const { id } = context.params;
+export async function DELETE(
+  req: NextRequest,
+  context: { params: { id: string } }
+) {
+  const { id } = context.params;
 
-//   try {
-//     const { error } = await supabaseServer
-//       .from("order_items")
-//       .delete()
-//       .eq("id", id);
+  try {
+    const { error } = await supabaseServer
+      .from("order_items")
+      .delete()
+      .eq("id", id);
 
-//     if (error) {
-//       return NextResponse.json(
-//         { error: "Failed to delete order item", details: error.message },
-//         { status: 400 }
-//       );
-//     }
+    if (error) {
+      return NextResponse.json(
+        { error: "Failed to delete order item", details: error.message },
+        { status: 400 }
+      );
+    }
 
-//     return NextResponse.json({ success: true }, { status: 200 });
-//   } catch (err) {
-//     return NextResponse.json(
-//       { error: "Internal server error", details: String(err) },
-//       { status: 500 }
-//     );
-//   }
-// }
+    return NextResponse.json({ success: true }, { status: 200 });
+  } catch (err) {
+    return NextResponse.json(
+      { error: "Internal server error", details: String(err) },
+      { status: 500 }
+    );
+  }
+}
