@@ -8,10 +8,7 @@ import { supabaseServer } from "@/lib/supabaseServerClient";
  * GET /api/templates/[id]
  * Fetch a single template variant by variant_id (integer)
  */
-export async function GET(
-  req: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function GET(req: NextRequest, { params }: any) {
   const id = Number(params.id);
   if (isNaN(id)) {
     return NextResponse.json({ error: "Invalid ID" }, { status: 400 });
@@ -37,10 +34,7 @@ export async function GET(
  * PATCH /api/templates/[id]
  * Update a template variant. Only updates fields present in the request body.
  */
-export async function PATCH(
-  req: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function PATCH(req: NextRequest, { params }: any) {
   const id = Number(params.id);
   if (isNaN(id)) {
     return NextResponse.json({ error: "Invalid ID" }, { status: 400 });
@@ -106,10 +100,7 @@ export async function PATCH(
  * DELETE /api/templates/[id]
  * Delete a template variant by variant_id.
  */
-export async function DELETE(
-  req: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function DELETE(req: NextRequest, { params }: any) {
   const id = Number(params.id);
   if (isNaN(id)) {
     return NextResponse.json({ error: "Invalid ID" }, { status: 400 });
