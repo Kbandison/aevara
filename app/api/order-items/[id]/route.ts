@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // app/api/order-items/[id]/route.ts
 
 import { NextRequest, NextResponse } from "next/server";
@@ -36,7 +37,7 @@ export async function PATCH(
 }
 
 // DELETE: Delete order item by id (admin only)
-export async function DELETE(_req: NextRequest, params: { id: string }) {
+export async function DELETE(_req: NextRequest, params: { id: any }) {
   const { id } = params;
 
   try {
