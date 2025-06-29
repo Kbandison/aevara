@@ -36,15 +36,27 @@ export async function PATCH(
 }
 
 // DELETE: Delete order item by id (admin only)
-// app/api/order-items/[id]/route.ts
+export async function DELETE(req: NextRequest, params: { id: string }) {
+  const { id } = params;
 
-export async function DELETE(
-  req: NextRequest,
-  context: { params: { id: string } }
-) {
-  // Dummy implementation
-  return NextResponse.json(
-    { id: context.params.id, deleted: true },
-    { status: 200 }
-  );
+  try {
+    const { error } = await supabaseServer
+      .from("order_items")
+      .delete()
+      .eq("id", id);
+
+    if (error) {
+      return NextResponse.json(
+        { error: "Failed to delete order item", details: error.message },
+        { status: 400 }
+      );
+    }
+
+    return NextResponse.json({ success: true }, { status: 200 });
+  } catch (err) {
+    return NextResponse.json(
+      { error: "Internal server error", details: String(err) },
+      { status: 500 }
+    );
+  }
 }
