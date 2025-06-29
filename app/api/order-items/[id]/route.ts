@@ -36,7 +36,7 @@ export async function PATCH(
 }
 
 // DELETE: Delete order item by id (admin only)
-export async function DELETE(req: NextRequest, params: { id: string }) {
+export async function DELETE(_req: NextRequest, params: { id: string }) {
   const { id } = params;
 
   try {
