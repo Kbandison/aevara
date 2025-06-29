@@ -1,12 +1,14 @@
+// app/api/order-items/[id]/route.ts
+
 import { NextRequest, NextResponse } from "next/server";
 import { supabaseServer } from "@/lib/supabaseServerClient";
 
 // PATCH: Update order item by id
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
-  const { id } = params;
+  const { id } = context.params;
   const body = await req.json();
 
   try {
@@ -36,9 +38,9 @@ export async function PATCH(
 // DELETE: Delete order item by id (admin only)
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
-  const { id } = params;
+  const { id } = context.params;
 
   try {
     const { error } = await supabaseServer
