@@ -1,11 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextRequest, NextResponse } from "next/server";
 import { supabaseServer } from "@/lib/supabaseServerClient";
 
 // PATCH: Update order item by id
-export async function PATCH(
-  req: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function PATCH(req: NextRequest, { params }: any) {
   const { id } = params;
   const body = await req.json();
 
@@ -34,10 +32,7 @@ export async function PATCH(
 }
 
 // DELETE: Delete order item by id (admin only)
-export async function DELETE(
-  req: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function DELETE(req: NextRequest, { params }: any) {
   const { id } = params;
 
   try {
