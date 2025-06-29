@@ -4,9 +4,9 @@ import { supabaseServer } from "@/lib/supabaseServerClient";
 // PATCH: Update order item by id
 export async function PATCH(
   req: NextRequest,
-  context: { params: { id: string } }
+  { params }: { params: { id: string } }
 ) {
-  const { id } = context.params;
+  const { id } = params;
   const body = await req.json();
 
   try {
@@ -36,9 +36,9 @@ export async function PATCH(
 // DELETE: Delete order item by id (admin only)
 export async function DELETE(
   req: NextRequest,
-  context: { params: { id: string } }
+  { params }: { params: { id: string } }
 ) {
-  const { id } = context.params;
+  const { id } = params;
 
   try {
     const { error } = await supabaseServer
